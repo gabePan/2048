@@ -50,21 +50,36 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
+var valueMap = {
+  2 :    'shostakovich',
+  4 :    'rachmaninov',
+  8 :    "wagner",
+  16 :   "brahms",
+  32 :   'mendelssohn',
+  64 :   'schubert',
+  128 :  'beethoven',
+  256 :  'mozart',
+  512 :  'haydn',
+  1024 : 'vivaldi',
+  2048 : 'bach',
+  4096 : 'super'
+};
+
 HTMLActuator.prototype.addTile = function (tile) {
-  var valueMap = {
-    2 :    '<Udacity>',
-    4 :    '<Intro CS>',
-    8 :    "skills=['code']",
-    16 :   "skills.add('CSS')",
-    32 :   '</Intro CS>',
-    64 :   '<Job search>',
-    128 :  'getJob(skills)',
-    256 :  '</Job search>',
-    512 :  'if Udacious:',
-    1024 : 'skills.increase()',
-    2048 : 'myJob.advance()',
-    4096 : 'myCareer=myJob'
-  }
+//  var valueMap = {
+//    2 :    '<Udacity>',
+//    4 :    '<Intro CS>',
+//    8 :    "skills=['code']",
+//    16 :   "skills.add('CSS')",
+//    32 :   '</Intro CS>',
+//    64 :   '<Job search>',
+//    128 :  'getJob(skills)',
+//    256 :  '</Job search>',
+//    512 :  'if Udacious:',
+//    1024 : 'skills.increase()',
+//    2048 : 'myJob.advance()',
+//    4096 : 'myCareer=myJob'
+//  }
   var self = this;
 
   var wrapper   = document.createElement("div");
@@ -83,6 +98,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   inner.classList.add("tile-inner");
   //inner.textContent = tile.value;
   inner.textContent = valueMap[tile.value];
+  inner.addEventListener( "click", showWho );
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
